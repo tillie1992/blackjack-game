@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+YOU'RE BUSTED!
+
+	<h1>Player's Hand</h1>
+	{{#game.hand.cards}}
+		<div>{{ face }} of {{ suit }}</div>
+	{{/game.hand.cards}}
+	<div>You have {{game.hand.total}}</div>
+	
+	<h1>Dealer's Hand</h1>
+	{{#game.dealer.cards}}
+		<div>{{ face }} of {{ suit }}</div>
+	{{/game.dealer.cards}}
+	<div>Dealer has {{game.dealer.total}}</div>
+	
+<div>You have $?</div>
+<form method="post" action="/bet">
+	<input required autofocus type="number" name="bet">
+	<button>Place Your Bet</button>
+</form>
+</body>
+</html>
