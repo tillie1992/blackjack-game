@@ -5,13 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
-
+	
 	private ArrayList<Card> cards;
-
+	
 	public Hand() {
 
 		cards = new ArrayList<Card>();
 
+	}
+	
+	public boolean isBlackjack() {
+		if (cards.size() == 2 && getTotal() == 21) {
+			return true;
+		}
+		return false;
+	}
+	
+	public int numberOfCardsInHand() {
+		return cards.size();
 	}
 
 	public void accept(Card card) {

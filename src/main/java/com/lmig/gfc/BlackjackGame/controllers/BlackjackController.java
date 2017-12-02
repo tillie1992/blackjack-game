@@ -21,12 +21,23 @@ public class BlackjackController {
 	public ModelAndView showBetScreen() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("bet");
+		mv.addObject("game", game);
 		return mv;
 	}
-
+	
+	@GetMapping("/summary")
+	public ModelAndView showSummary() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("summary");
+		mv.addObject("game", game);
+		return mv;
+	}
+	
+	
 	@PostMapping("/bet")
 	public ModelAndView handleBet(int bet) {
 		game.deal();
+		game.placeBet(bet);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/play");
 		return mv;
@@ -35,11 +46,12 @@ public class BlackjackController {
 	@PostMapping("/stand")
 	public ModelAndView handleStand() {
 		game.hitDealer();
+		game.calculatePayOut();
 		ModelAndView mv = new ModelAndView();
 		if (game.dealerHasMoreThan21()) {
 			mv.setViewName("redirect:/busted");
 		} else {
-			mv.setViewName("redirect:/play");
+			mv.setViewName("redirect:/summary");
 		}
 		return mv;
 	}

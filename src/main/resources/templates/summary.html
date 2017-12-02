@@ -2,11 +2,10 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>summary</title>
 </head>
 <body>
-SOMEONE IS BUSTED!
-
+	<h1>Pay up, sucker!</h1>
 	<h1>Player's Hand</h1>
 	{{#game.hand.cards}}
 		<div>{{ face }} of {{ suit }}</div>
@@ -20,13 +19,9 @@ SOMEONE IS BUSTED!
 	<div>Dealer has {{game.dealer.total}}</div>
 	
 <div>You have {{game.wallet.money}}</div>
-
-{{^game.wallet.walletIsEmpty}}
 <form method="post" action="/bet">
 	<input required autofocus type="number" name="bet">
 	<button>Place Your Bet</button>
 </form>
-{{/game.wallet.walletIsEmpty}}
-
 </body>
 </html>

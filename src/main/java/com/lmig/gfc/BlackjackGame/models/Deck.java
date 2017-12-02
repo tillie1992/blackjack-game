@@ -4,15 +4,12 @@ import java.util.ArrayList;
 
 import java.util.Collections;
 
-
 public class Deck {
-
-	// declare a private variable that holds a collection of Card objects
 
 	private ArrayList<Card> cardsInDeck;
 
 	public Deck() {
-		// initialize the private variable to a new thing
+		
 		cardsInDeck = new ArrayList<Card>();
 
 		for (Suits suit : Suits.values()) {

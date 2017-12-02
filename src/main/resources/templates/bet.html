@@ -6,10 +6,14 @@
 </head>
 <body>
 
-	<div>You have $?</div>
+	<div>What's in your Wallet?</div>
+	${{game.wallet.money}}
+	
+	{{^game.wallet.walletIsEmpty}}
 	<form method="post" action="/bet">
-		<input required autofocus type="number" name="bet">
+		<input required min="5" autofocus type="number" name="bet">
 		<button>Place Your Bet</button>
 	</form>
+	{{/game.wallet.walletIsEmpty}}
 </body>
 </html>

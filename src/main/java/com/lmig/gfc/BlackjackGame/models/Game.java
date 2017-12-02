@@ -5,6 +5,8 @@ public class Game {
 	private Deck deck = new Deck();
 	private Hand hand = new Hand();
 	private Hand dealer = new Hand();
+	private Wallet wallet = new Wallet();
+	private int betForHand;
 
 	public void hitPlayer() {
 		Card card = deck.draw();
@@ -26,7 +28,6 @@ public class Game {
 		hand = new Hand();
 		dealer = new Hand();
 
-		// deal two cards to the player and the dealer from the deck
 		Card card = deck.draw();
 		hand.accept(card);
 
@@ -38,6 +39,27 @@ public class Game {
 
 		card = deck.draw();
 		dealer.accept(card);
+	}
+
+	public boolean playerHasBackjack() {
+		if (hand.numberOfCardsInHand() == 2 && hand.getTotal() == 21) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isTie() {
+		if (hand.getTotal() == dealer.getTotal()) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isHandOver() {
+		if (hand.getTotal() == 21) {
+			return true;
+		}
+		return false;
 	}
 
 	public boolean playerHasMoreThan21() {
@@ -54,4 +76,53 @@ public class Game {
 		return false;
 	}
 
-}
+	public boolean deckIsEmpty() {
+		if (deck.getCardsInDeck().isEmpty()) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean hasMoreThanFiveCards() {
+		if (deck.size() > 5) {
+			return true;
+		}
+		return false;
+	}
+
+	public Wallet getWallet() {
+		return wallet;
+	}
+
+	public void placeBet(int bet) {
+		wallet.removeFromWallet(bet);
+		betForHand = bet;
+	}
+
+	public void calculatePayOut() {
+		// If player and dealer is blackjack
+		if (hand.isBlackjack() && dealer.isBlackjack()) {
+			wallet.addtoWallet(betForHand);
+		}
+		else if(!dealer.isBlackjack()&& hand.isBlackjack()) {
+			wallet.addtoWallet(betForHand *2.5);
+			
+		}
+		// Simple win where the player is not busted and has more than dealer
+		else if (hand.getTotal() <= 21 && dealer.getTotal() < hand.getTotal()) {
+			wallet.addtoWallet(betForHand * 2);
+		}
+		// Simple win where dealer is busted
+		else if((hand.getTotal() <= 21 && dealer.getTotal() > 21)) {
+			wallet.addtoWallet(betForHand * 2);
+		}
+		else if(hand.getTotal()<dealer.getTotal()&& dealer.getTotal()<=21) {
+			wallet.removeFromWallet(betForHand);
+		}
+		else if(hand.getTotal()==dealer.getTotal()) {
+			wallet.removeFromWallet(betForHand);
+		}
+		}
+	}
+
+

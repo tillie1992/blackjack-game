@@ -11,14 +11,16 @@
 	{{#game.hand.cards}}
 		<div>{{ face }} of {{ suit }}</div>
 	{{/game.hand.cards}}
-	<div>You have {{game.hand.total}}</div>
+	<div>Player has {{game.hand.total}}</div>
+	
 	<h1>Dealer's Hand</h1>
-	{{#game.dealer.cards}}
-		<div>{{ face }} of {{ suit }}</div>
-	{{/game.dealer.cards}}
-	<div>Dealer {{game.dealer.total}}</div>
+	{{game.dealer.cards.0.face}}
+	{{game.dealer.cards.0.suit}}
+	
+	
 
 	<p>The deck has {{ game.deck.size }} cards</p>	
+	
 	<form action="/hit" method="post">
 
 		<button>Hit Me</button>
