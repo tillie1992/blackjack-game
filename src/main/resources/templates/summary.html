@@ -8,20 +8,20 @@
 	<h1>Pay up, sucker!</h1>
 	<h1>Player's Hand</h1>
 	{{#game.hand.cards}}
-		<div>{{ face }} of {{ suit }}</div>
+	<div>{{ face }} of {{ suit }}</div>
 	{{/game.hand.cards}}
 	<div>You have {{game.hand.total}}</div>
-	
+
 	<h1>Dealer's Hand</h1>
 	{{#game.dealer.cards}}
-		<div>{{ face }} of {{ suit }}</div>
+	<div>{{ face }} of {{ suit }}</div>
 	{{/game.dealer.cards}}
 	<div>Dealer has {{game.dealer.total}}</div>
-	
-<div>You have {{game.wallet.money}}</div>
-<form method="post" action="/bet">
-	<input required autofocus type="number" name="bet">
-	<button>Place Your Bet</button>
-</form>
+
+	<div>You have {{game.wallet.money}}</div>
+	<form method="post" action="/bet">
+		<input required autofocus type="number" name="bet">
+		<button>Place Your Bet</button>
+	</form>
 </body>
 </html>

@@ -103,26 +103,21 @@ public class Game {
 		// If player and dealer is blackjack
 		if (hand.isBlackjack() && dealer.isBlackjack()) {
 			wallet.addtoWallet(betForHand);
-		}
-		else if(!dealer.isBlackjack()&& hand.isBlackjack()) {
-			wallet.addtoWallet(betForHand *2.5);
-			
+		} else if (!dealer.isBlackjack() && hand.isBlackjack()) {
+			wallet.addtoWallet(betForHand * 2.5);
+
 		}
 		// Simple win where the player is not busted and has more than dealer
 		else if (hand.getTotal() <= 21 && dealer.getTotal() < hand.getTotal()) {
 			wallet.addtoWallet(betForHand * 2);
 		}
 		// Simple win where dealer is busted
-		else if((hand.getTotal() <= 21 && dealer.getTotal() > 21)) {
+		else if ((hand.getTotal() <= 21 && dealer.getTotal() > 21)) {
 			wallet.addtoWallet(betForHand * 2);
-		}
-		else if(hand.getTotal()<dealer.getTotal()&& dealer.getTotal()<=21) {
+		} else if (hand.getTotal() < dealer.getTotal() && dealer.getTotal() <= 21) {
 			wallet.removeFromWallet(betForHand);
-		}
-		else if(hand.getTotal()==dealer.getTotal()) {
+		} else if (hand.getTotal() == dealer.getTotal()) {
 			wallet.removeFromWallet(betForHand);
-		}
 		}
 	}
-
-
+}

@@ -7,8 +7,7 @@
 <body>
 
 	<div>What's in your Wallet?</div>
-	${{game.wallet.money}}
-	
+	${{game.wallet.money}} 
 	{{^game.wallet.walletIsEmpty}}
 	<form method="post" action="/bet">
 		<input required min="5" autofocus type="number" name="bet">
